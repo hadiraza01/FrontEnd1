@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, session, flash
 from models import UserDatabase
+import pandas
 
 class DoctorApp:
     def __init__(self):
