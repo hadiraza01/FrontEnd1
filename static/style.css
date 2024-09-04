@@ -48,6 +48,7 @@ body {
     background: linear-gradient(90deg, hsl(200, 100%, 40%), hsl(200, 52%, 28%));
     padding: 10px 20px;
     color: hsl(0, 0%, 100%);
+    box-shadow: 0px 0px 24px hsl(200, 53%, 58%);
 }
 
 .navbar .logo img {
@@ -97,17 +98,18 @@ body {
 
 .form-container, .info-container {
     flex: 1;
-    padding: 20px;
+    padding: 50px;
 }
 
 .form-container {
     background: hsl(200, 100%, 40%);
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 24px hsl(200, 53%, 58%);
     max-width: 600px;
     display: flex;
     flex-direction: column;
     height: 400px; /* Adjust height as needed */
+
 }
 
 .form-container h2 {
@@ -155,21 +157,6 @@ input[type="submit"]:hover {
     transition: .5s;
 }
 
-.signup_link {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 16px;
-    color: #ffffff;
-}
-
-.signup_link a {
-    color: hsl(204, 77%, 30%);
-    text-decoration: none;
-}
-
-.signup_link a:hover {
-    text-decoration: underline;
-}
 
 .info-container {
     padding: 20px;
