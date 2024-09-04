@@ -1,9 +1,11 @@
 import sqlite3
+import pandas as pd
 
 class UserDatabase:
     def __init__(self, db_path='database.db'):
         self.db_path = db_path
         self._init_db()
+        self.patient_data = pd.DataFrame()
 
     def _init_db(self):
         with sqlite3.connect(self.db_path) as conn:
@@ -32,3 +34,12 @@ class UserDatabase:
         if password:
             return self.query_db('SELECT * FROM doctors WHERE username = ? AND password = ?', (username, password), one=True)
         return self.query_db('SELECT * FROM doctors WHERE username = ?', (username,), one=True)
+    
+    def load_patient_data(self, csv_file):
+        self.patient_data = pd.read_csv(csv_file)
+
+    def get_patient_by_id(self, patient_id):
+        patient = self.patient_data[self.patient_data['PatientID'] == int(patient_id)]
+        if not patient.empty:
+            return patient.to_dict(orient='records')[0]
+        return None

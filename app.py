@@ -6,6 +6,7 @@ class DoctorApp:
         self.app = Flask(__name__)
         self.app.secret_key = 'your_secret_key'
         self.db = UserDatabase()
+        self.db.load_patient_data('test.csv')
 
         self.setup_routes()
 
@@ -15,8 +16,6 @@ class DoctorApp:
         self.app.add_url_rule('/signup', 'signup', self.signup, methods=['GET', 'POST'])
         self.app.add_url_rule('/patient', 'patient', self.patient, methods=['GET', 'POST'])
         self.app.add_url_rule('/logout', 'logout', self.logout)
-
-
 
     def index(self):
         return redirect(url_for('login'))
@@ -52,11 +51,16 @@ class DoctorApp:
         if 'doctor' not in session:
             return redirect(url_for('login'))
         
+        patient_data = None
         if request.method == 'POST':
             patient_id = request.form['patient_id']
-            flash(f'Patient ID {patient_id} submitted successfully!', 'success')
+            patient_data = self.db.get_patient_by_id(patient_id)
+            if patient_data:
+                flash(f'Patient ID {patient_id} found!', 'success')
+            else:
+                flash(f'Patient ID {patient_id} not found!', 'danger')
         
-        return render_template('dashboard.html')
+        return render_template('dashboard.html', patient_data=patient_data)
 
     def logout(self):
         session.pop('doctor', None)

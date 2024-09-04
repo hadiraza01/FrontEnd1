@@ -36,43 +36,35 @@
 
 <body>
     <div class="container">
-        <div class="form-container" id="form-container">
-         <div class="dashboard-container">
-        <h2>Doctor's Dashboard</h2>
-        <form method="POST" class="patient-form">
-            <div class="form-group">
-                <input type="text" name="patient_id" placeholder="Enter Patient ID" required>
-            </div>
-            <input type="submit" value="Retrieve Patient Data">
-        </form>
-        
+        <div class="dashboard-container">
+            <h2>Patient Dashboard</h2>
+            <form method="POST">
+                <label for="patient_id">Enter Patient ID:</label>
+                <input type="text" id="patient_id" name="patient_id" required>
+                <button type="submit">Submit</button>
+            </form>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for category, message in messages %}
+                            <li class="{{ category }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </div>
+
         {% if patient_data %}
-        <div class="patient-data">
-            <h3>Patient Data</h3>
-            <p><strong>BMI:</strong> {{ patient_data.BMI }}</p>
-            <p><strong>Weight:</strong> {{ patient_data.Weight }} kg</p>
-            <p><strong>Height:</strong> {{ patient_data.Height }} cm</p>
+        <div class="patient-info-container">
+            <h3>Patient Information</h3>
+            <ol>
+                {% for key, value in patient_data.items() %}
+                <li><strong>{{ key }}:</strong> {{ value }}</li>
+                {% endfor %}
+            </ol>
         </div>
         {% endif %}
     </div>
-<div class="content-container">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <div class="flash-messages">
-                {% for category, message in messages %}
-                    <div class="alert alert-{{ category }}">{{ message }}</div>
-                {% endfor %}
-            </div>
-            {% endif %}
-            {% endwith %}
-</div>
-</div>
-<div class="info-container">
-    <h2>About the Application</h2>
-    <p>Welcome to the Doctor Portal. Use this application to manage patient data efficiently. The portal offers secure login and signup options for doctors. Once logged in, you can retrieve patient information and view essential details.</p>
-</div>
-</div>
-<!-- <script src="{{ url_for('static', filename='script.js') }}"></script> -->
 </body>
 </html>
-
