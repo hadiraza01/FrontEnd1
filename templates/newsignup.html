@@ -36,31 +36,30 @@
 </nav>
 <div class="container">
 	<div class="screen">
-        <!-- <h2>Log In</h2> -->
 		<div class="screen__content">
 			<form class="login" method="POST">
 				<div class="login__field">
 					<i class="login__icon fas fa-user"></i>
-					<input type="text" class="login__input" placeholder="User name" name="username" id="login-username" required>
+					<input type="text" class="login__input" placeholder="User name" id="signup-username" name="username" required>
 				</div>
 				<div class="login__field">
 					<i class="login__icon fas fa-lock"></i>
-					<input type="password" class="login__input" placeholder="Password" id="login-password" name="password" required>
+					<input type="password" class="login__input" placeholder="Password" id="signup-password" name="password" required>
 				</div>
 				<button class="button login__submit">
-					<span class="button__text">Log In</span>
+					<span class="button__text">Sign up</span>
 					<i class="button__icon fas fa-chevron-right"></i>
 				</button>				
-			</form>
-            {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-            <div class="flash-messages">
-                {% for category, message in messages %}
-                    <div class="alert alert-{{ category }}">{{ message }}</div>
-                {% endfor %}
-            </div>
-            {% endif %}
-            {% endwith %}
+			</form>      
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flash-messages">
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
 		</div>
 		<div class="screen__background">
 			<span class="screen__background__shape screen__background__shape4"></span>

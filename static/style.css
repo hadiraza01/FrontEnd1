@@ -45,7 +45,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: hsl(200, 100%, 40%);
+    background: linear-gradient(90deg, hsl(200, 100%, 40%), hsl(200, 52%, 28%));
     padding: 10px 20px;
     color: hsl(0, 0%, 100%);
 }

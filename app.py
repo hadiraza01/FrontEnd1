@@ -15,10 +15,8 @@ class DoctorApp:
         self.app.add_url_rule('/signup', 'signup', self.signup, methods=['GET', 'POST'])
         self.app.add_url_rule('/patient', 'patient', self.patient, methods=['GET', 'POST'])
         self.app.add_url_rule('/logout', 'logout', self.logout)
-        self.app.add_url_rule('/new','new', self.new)
 
-    def new(self):
-        return render_template('new.html')
+
 
     def index(self):
         return redirect(url_for('login'))
@@ -35,7 +33,7 @@ class DoctorApp:
             else:
                 flash('Invalid username or password', 'danger')
         
-        return render_template('login.html')
+        return render_template('new.html')
 
     def signup(self):
         if request.method == 'POST':
@@ -48,7 +46,7 @@ class DoctorApp:
                 flash('Signup successful, please login', 'success')
                 return redirect(url_for('login'))
         
-        return render_template('signup.html')
+        return render_template('newsignup.html')
 
     def patient(self):
         if 'doctor' not in session:
